@@ -332,6 +332,17 @@ button:hover {
 /* Large devices (laptops/desktops, 1201px and up) */
 @media only screen and (min-width: 1201px) {
   /* CSS rules for large devices */
+  .fixed-left, .fixed-right {
+    max-width: 500px;
+    max-height: 500px;
+  }
+  .footer-bar {
+	max-height: 3.2rem;
+  }
+  .footer-text {
+	font-size: 1em;
+	padding: 0;
+  }
 }
-
+/* XLarge devices (measurements to come) */
 </style>
