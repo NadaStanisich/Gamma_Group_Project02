@@ -1,18 +1,19 @@
 <script>
-	import { createClient } from '@supabase/supabase-js'
+	import { createClient } from '@supabase/supabase-js';
 	import { onMount } from 'svelte';
 	import Navbar from './navbar.svelte';
 
 
-	const supabaseUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co'
-	const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwY2JvY3NpY2JyY3VjdGx3d3FjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTMyODQ3NTEsImV4cCI6MjAwODg2MDc1MX0.jK2FAWoHlw6YkDRxuNKWfEeAZYh_OGOjSDkWJqOW2J4'
-	const supabase = createClient(supabaseUrl, supabaseKey)
+	const supabaseUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co';
+	const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwY2JvY3NpY2JyY3VjdGx3d3FjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTMyODQ3NTEsImV4cCI6MjAwODg2MDc1MX0.jK2FAWoHlw6YkDRxuNKWfEeAZYh_OGOjSDkWJqOW2J4';
+	const supabase = createClient(supabaseUrl, supabaseKey);
 
 
 //NAVBAR IMAGES
 	let kangLogoUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co/storage/v1/object/sign/Images/Kangan_logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJbWFnZXMvS2FuZ2FuX2xvZ28ucG5nIiwiaWF0IjoxNjk0NDAyMDg3LCJleHAiOjE3MjU5MzgwODd9.aJVXb8Fd6I1fAXIqUnsJedfiz7L1P34iFSE8Z9wXYIE&t=2023-09-11T03%3A14%3A47.742Z';
 
 	let vicLogoUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co/storage/v1/object/sign/Images/tafe_vic.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJbWFnZXMvdGFmZV92aWMucG5nIiwiaWF0IjoxNjk0MzE0NTkwLCJleHAiOjE3MjU4NTA1OTB9.ECX_cDtQ7R9WbICaD0UDTWzjwDxgpcuatQitjqeYRr4&t=2023-09-10T02%3A56%3A30.325Z';
+
 
 //LOGIN INPUTS
 
@@ -46,6 +47,8 @@
 		}
 	}
 
+	let githubLogoUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co/storage/v1/object/sign/Images/github-mark-white.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJbWFnZXMvZ2l0aHViLW1hcmstd2hpdGUuc3ZnIiwiaWF0IjoxNjk0NDIzMjAyLCJleHAiOjE3MjU5NTkyMDJ9.m2mQMViFdf7VbYshstMFe3zx0CqRVJQKA8m8HiceT_4&t=2023-09-11T09%3A06%3A42.041Z';
+
 // GITHUB SIGN IN FUNCTION
 	async function signInGitHub() {
     console.log("signInGitHub");
@@ -70,6 +73,9 @@ async function signout() {
 }
 
 
+
+
+
 // Call the handleLogin function when a login action occurs (e.g., button click)
 	/* async function handleLoginButtonClick() {
 		await handleLogin();
@@ -87,14 +93,18 @@ async function signout() {
 	<h1>Kangan Quiz</h1>
 <!-- LOGIN -->
 
-	<div>
-	<!-- Other content -->
-		<input type="text" placeholder="Username" bind:value="{username}" />
-		<input type="password" placeholder="Password" bind:value="{password}" />
-		<button on:click="{handleLogin}">Login</button>
-		<button on:click={()=>signInGitHub()}>GitHub SignIn</button>
+	<div class="form-group">
+		<input type="text" placeholder="Username" bind:value="{username}" alt="username" required />
+		<input type="password" placeholder="Password" bind:value="{password}" alt="password" />
+		<button id="loginButton" on:click="{handleLogin}" alt="login button">Login</button>
+		<button id="githubButton" on:click={()=>signInGitHub()} alt="github signin">
+		<img src={githubLogoUrl} alt="Github logo" style="height: 1.75em; vertical-align: middle; margin-right: 1em;" />Login with <strong>GitHub</strong></button>
 	</div>
 </main>
+
+<footer>
+	<p>&copy; Team Gamma 2023</p>
+</footer>
 
 <style>
 
@@ -116,20 +126,85 @@ main {
     height: 100vh;
 }
 
-/*main {
-	text-align: center;
-	padding: 1em;
-	max-width: 240px;
-	margin: 0 auto;
-}*/
 
 h1 {
 	font-family: 'Kanit', sans-serif;
-	color: #e64610;
+	color: #b33a0d;
 	text-transform: uppercase;
 	font-size: 4em;
 	font-weight: 800;
 }
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex; /* Use flexbox */
+  flex-direction: column;
+  align-items: flex-start;  /* Align items to the start (left) */
+  text-align: left; /* Left-align text */
+ 
+}
+
+input {
+  flex: 2; /* Take up available space */
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+input:focus {
+  /*outline: 0;  Disable default focus glow 
+  border-color: #f6bc10;*/
+  box-shadow: 0 0 0 0.25rem rgba(41, 38, 3, 0.375);
+}
+
+button {
+  padding: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
+  min-height: 10mm;
+}
+
+#loginButton {
+  background-color: #b33a0d;
+  color: #fff;
+}
+
+#loginButton:hover {
+  background-color: #90300c;
+  font-style: italic;
+}
+
+#githubButton {
+  background-color: #207e0b;
+  color: #fff;
+}
+
+#githubButton:hover {
+  background-color: #134a07;
+  font-style: italic;
+}
+
+button:hover {
+  background-color: #0069d9;
+  color: #f6bc10;
+}
+
+
+footer {
+    background-color: #000; 
+    color: #fff; 
+    padding: 1em 0; 
+    text-align: center;
+	position: absolute; /* Position it absolutely */
+    bottom: 0; /* Stick it to the bottom */
+    width: 100%;
+  }
 
 @media (min-width: 640px) {
 	main {
