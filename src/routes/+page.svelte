@@ -72,7 +72,9 @@ async function signout() {
     user = null;
 }
 
-
+//IMAGE ASSETS
+	let leftImageUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co/storage/v1/object/sign/Images/PageVector_Left.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJbWFnZXMvUGFnZVZlY3Rvcl9MZWZ0LnBuZyIsImlhdCI6MTY5NDQzMTE4NiwiZXhwIjoxNzI1OTY3MTg2fQ.Bp7c38YzVGG_xiUPZ_j0Jtg3dCMpDr0NkBQnIxTDQKY&t=2023-09-11T11%3A19%3A45.893Z';
+	let rightImageUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co/storage/v1/object/sign/Images/PageVector_Right.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJbWFnZXMvUGFnZVZlY3Rvcl9SaWdodC5wbmciLCJpYXQiOjE2OTQ0MzEyMDksImV4cCI6MTcyNTk2NzIwOX0.rVE6LispI0yyq-7VgoDQoSSn5DvCR0Rg1ET_cbtFMmA&t=2023-09-11T11%3A20%3A09.073Z';
 
 
 
@@ -102,9 +104,13 @@ async function signout() {
 	</div>
 </main>
 
-<footer>
-	<p>&copy; Team Gamma 2023</p>
-</footer>
+<!-- FOOTER -->
+<img class="fixed-left" src={leftImageUrl} alt=""/>
+<img class="fixed-right" src={rightImageUrl} alt=""/>
+
+<div class="footer-bar"></div>
+
+<p class="footer-text">&copy; Team Gamma 2023</p>
 
 <style>
 
@@ -195,16 +201,40 @@ button:hover {
   color: #f6bc10;
 }
 
-
-footer {
-    background-color: #000; 
-    color: #fff; 
-    padding: 1em 0; 
-    text-align: center;
-	position: absolute; /* Position it absolutely */
-    bottom: 0; /* Stick it to the bottom */
-    width: 100%;
+/*LEFT IMAGE*/
+.fixed-left {
+    position: fixed;
+    left: 0;
+    bottom: -3.3em;
+    z-index: 1; /* Behind the footer-text */
   }
+/*RIGHT IMAGE*/
+.fixed-right {
+    position: fixed;
+    right: 0;
+    bottom: -3.3em;
+    z-index: 1; /* Behind the footer-text */
+  }
+
+
+  .footer-bar {
+    position: fixed; /* sticks it to the bottom */
+    bottom: 0; /* places it at the bottom */
+    width: 100%;
+    height: 5.3em; /* Height of the footer */
+    background-color: #000;
+    z-index: 0; /* Bottom layer */
+}
+
+  .footer-text {
+    color: #fff; 
+    text-align:right;
+    position: fixed;
+    right: 1.5em;
+    bottom: 1em;
+    padding: 1em 0;
+    z-index: 3; /* Top layer in front of images*/
+}
 
 @media (min-width: 640px) {
 	main {
