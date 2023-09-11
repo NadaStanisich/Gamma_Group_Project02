@@ -140,10 +140,10 @@ async function signout() {
       top: 0;
       width: 100%;
       z-index: 100;
-      padding: 0.75rem;
+      padding: 0.75em;
       display: flex;
       align-items: center;
-      border-bottom: 2rem solid black;
+      border-bottom: 1.5em solid black;
     }
   
     .navbar img {
@@ -266,10 +266,72 @@ button:hover {
     z-index: 3; /* Top layer in front of images*/
 }
 
-@media (min-width: 640px) {
-	main {
-	max-width: none;
-	}
+/* MEDIA QUERIES */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .navbar img {
+    max-height: 2rem;
+  }
+
+  .footer-text {
+    font-size: 0.8em;
+  }
+
+  button {
+    padding: 0.25rem;
+  }
+
+  input {
+    padding: 0.25rem;
+  }
+
+  .fixed-left, .fixed-right {
+    max-width: 50px;
+    max-height: 50px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px - 900px) */
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+  h1 {
+    font-size: 3em;
+  }
+
+  .navbar img {
+    max-height: 3rem;
+  }
+
+  .footer-text {
+    font-size: 1em;
+  }
+
+  button {
+    padding: 0.5rem;
+  }
+
+  input {
+    padding: 0.5rem;
+  }
+
+  .fixed-left, .fixed-right {
+    max-width: 75px;
+    max-height: 75px;
+  }
+}
+
+/* Medium devices (landscape tablets, 901px - 1200px) */
+@media only screen and (min-width: 901px) and (max-width: 1200px) {
+  /* CSS rules for medium devices */
+}
+
+/* Large devices (laptops/desktops, 1201px and up) */
+@media only screen and (min-width: 1201px) {
+  /* CSS rules for large devices */
 }
 
 </style>
