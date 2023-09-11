@@ -14,6 +14,7 @@
       padding: 1.25rem;
       display: flex;
       align-items: center;
+      border-bottom: 2rem solid black;
     }
   
     .navbar img {
