@@ -11,7 +11,7 @@
       top: 0;
       width: 100%;
       z-index: 100;
-      padding: 1.25rem;
+      padding: 0.75rem;
       display: flex;
       align-items: center;
       border-bottom: 2rem solid black;
@@ -19,7 +19,7 @@
   
     .navbar img {
       height: auto;
-      max-height: 3rem;
+      max-height: 4rem;
       width: auto;
       margin-right: 1rem;
     }
