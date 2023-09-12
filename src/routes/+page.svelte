@@ -2,14 +2,12 @@
 	import { createClient } from '@supabase/supabase-js';
 	import { onMount } from 'svelte';
 
-
-
 	const supabaseUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co'
 	const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwY2JvY3NpY2JyY3VjdGx3d3FjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTMyODQ3NTEsImV4cCI6MjAwODg2MDc1MX0.jK2FAWoHlw6YkDRxuNKWfEeAZYh_OGOjSDkWJqOW2J4'
 	
 	let supabase;
 
-	//ADDS A STORAGE OPTION
+	//ADDS LOCAL STORAGE
 	if (typeof window !== 'undefined') {
   	supabase = createClient(supabaseUrl, supabaseKey, {
     persistSession: true, 
@@ -73,14 +71,14 @@
     if(error) {
         console.log("error:", error);
     }
-}
-async function signout() {
+	}
+	async function signout() {
     const { error } = await supabase.auth.signOut();
     if(error) {
         console.log("error:", error);
     }
     user = null;
-}
+	}
 
 //IMAGE ASSETS
 	let leftImageUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co/storage/v1/object/sign/Images/PageVector_Left.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJbWFnZXMvUGFnZVZlY3Rvcl9MZWZ0LnBuZyIsImlhdCI6MTY5NDQzMTE4NiwiZXhwIjoxNzI1OTY3MTg2fQ.Bp7c38YzVGG_xiUPZ_j0Jtg3dCMpDr0NkBQnIxTDQKY&t=2023-09-11T11%3A19%3A45.893Z';
