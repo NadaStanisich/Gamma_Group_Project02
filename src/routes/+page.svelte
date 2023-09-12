@@ -67,10 +67,7 @@
 		console.log("data:", data);
 		user = await supabase.auth.getUser();
 		console.log("user:", user);
-		successMessage = 'You successfully logged in!';
-    
-    // Navigate to the "Success" page after successful login
-    navigate('/success');
+		
 
   	}
   	if (error) {
@@ -107,9 +104,7 @@
 		<button on:click="{handleLogin}">Login</button>
 		<button on:click={()=>signInGitHub()}>GitHub SignIn</button>
 		</div>
-		{#if successMessage}
-		<p>{successMessage}</p>
-	  {/if}
+	
 
 	</main>
 
