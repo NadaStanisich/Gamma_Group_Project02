@@ -1,19 +1,29 @@
 <script>
 	import { createClient } from '@supabase/supabase-js';
 	import { onMount } from 'svelte';
-	//import Navbar from './navbar.svelte';
 
 
-	const supabaseUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co';
-	const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwY2JvY3NpY2JyY3VjdGx3d3FjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTMyODQ3NTEsImV4cCI6MjAwODg2MDc1MX0.jK2FAWoHlw6YkDRxuNKWfEeAZYh_OGOjSDkWJqOW2J4';
-	const supabase = createClient(supabaseUrl, supabaseKey);
 
+	const supabaseUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co'
+	const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwY2JvY3NpY2JyY3VjdGx3d3FjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTMyODQ3NTEsImV4cCI6MjAwODg2MDc1MX0.jK2FAWoHlw6YkDRxuNKWfEeAZYh_OGOjSDkWJqOW2J4'
+	
+	let supabase;
+
+	//ADDS A STORAGE OPTION
+	if (typeof window !== 'undefined') {
+  	supabase = createClient(supabaseUrl, supabaseKey, {
+    persistSession: true, 
+    localStorage: window.localStorage, 
+ 	});
+	}
+
+	//INITIALIZES USER
+	let user = null; 
 
 //NAVBAR IMAGES
 	let kangLogoUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co/storage/v1/object/sign/Images/Kangan_logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJbWFnZXMvS2FuZ2FuX2xvZ28ucG5nIiwiaWF0IjoxNjk0NDAyMDg3LCJleHAiOjE3MjU5MzgwODd9.aJVXb8Fd6I1fAXIqUnsJedfiz7L1P34iFSE8Z9wXYIE&t=2023-09-11T03%3A14%3A47.742Z';
 
 	let vicLogoUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co/storage/v1/object/sign/Images/tafe_vic.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJbWFnZXMvdGFmZV92aWMucG5nIiwiaWF0IjoxNjk0MzE0NTkwLCJleHAiOjE3MjU4NTA1OTB9.ECX_cDtQ7R9WbICaD0UDTWzjwDxgpcuatQitjqeYRr4&t=2023-09-10T02%3A56%3A30.325Z';
-
 
 //LOGIN INPUTS
 
@@ -72,21 +82,17 @@ async function signout() {
     user = null;
 }
 
+let successMessage = ''
+
 //IMAGE ASSETS
 	let leftImageUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co/storage/v1/object/sign/Images/PageVector_Left.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJbWFnZXMvUGFnZVZlY3Rvcl9MZWZ0LnBuZyIsImlhdCI6MTY5NDQzMTE4NiwiZXhwIjoxNzI1OTY3MTg2fQ.Bp7c38YzVGG_xiUPZ_j0Jtg3dCMpDr0NkBQnIxTDQKY&t=2023-09-11T11%3A19%3A45.893Z';
 	let rightImageUrl = 'https://spcbocsicbrcuctlwwqc.supabase.co/storage/v1/object/sign/Images/PageVector_Right.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJbWFnZXMvUGFnZVZlY3Rvcl9SaWdodC5wbmciLCJpYXQiOjE2OTQ0MzEyMDksImV4cCI6MTcyNTk2NzIwOX0.rVE6LispI0yyq-7VgoDQoSSn5DvCR0Rg1ET_cbtFMmA&t=2023-09-11T11%3A20%3A09.073Z';
 
-
-
-// Call the handleLogin function when a login action occurs (e.g., button click)
-	/* async function handleLoginButtonClick() {
-		await handleLogin();
-	}*/
 	</script> 
 
 <!-- NAVBAR & LOGOS-->
 
-<!--//<Navbar kangLogoUrl={kangLogoUrl} vicLogoUrl={vicLogoUrl} />-->
+
 
 <div class="navbar">
     <a href="https://www.kangan.edu.au/campus/cremorne/creative-digital-skills-campus">
@@ -110,6 +116,11 @@ async function signout() {
 		<button id="githubButton" on:click={()=>signInGitHub()} alt="github signin">
 		<img src={githubLogoUrl} alt="Github logo" style="height: 1.75em; vertical-align: middle; margin-right: 1em;" />Login with <strong>GitHub</strong></button>
 	</div>
+
+    {#if successMessage}
+		  <p>{successMessage}</p>
+	  {/if}
+
 </main>
 
 <!-- FOOTER -->
